@@ -2,9 +2,17 @@
 Algoritmo para cálculo de Equilíbrio-Líquido-Líquido-Vapor (ELLV) aplicado ao processo de desasfaltação (UDASF). Trabalho da disciplina de Termodinâmica de Soluções - COQ712 - PEQ/COPPE/UFRJ.
 
 Aluno: Diego Telles Fernandes
-PRofessores: Frederico W. Tavares & Iuri S. V. Segtovich
+Professores: Frederico W. Tavares & Iuri S. V. Segtovich
 
-Este algoritmo calcula o rendimento de ODES e RASF a partir de correntes de Resíduo de Vácuo que foram Caracterizadas por Reconstrução Molecular. 
+Este algoritmo calcula o rendimento de ODES e RASF a partir de correntes de Resíduo de Vácuo que foram Caracterizadas por Reconstrução Molecular. Os conecimentos relacionados a disciplina foram, em sua maioria, implementados nas funções *tpd*, *AnaliseEstabilidade* e *FlashELLV* contidos na classe *PropsMX*, e para consulta-las veja o arquivo *PropsMX.cpp* no diretório **C++**.
+
+## Instalação:
+
+O único pré-requisito externo é a biblioteca Eigen, que já está inserida no projeto, então nada precisa ser instalado. 
+
+Se você está em ambiente *linux* então basta clonar o projeto e executar o binário conforme exemplo descrito a seguir. Caso deseje recompilar o código, seu sistema operacional já deve possuir um compilador C++, então basta executar `make` na raiz do projeto. Estou utilizando o C++20 (`g++ -std=c++2a`), e caso deseje alterar a versão do C++, alterar alguma flag, ou adicionar alguma bibliotecas, faça isso no arquivo *makefile*. No entanto, lembre-se: **Duas classe deste código possuem restrições de propriedade intelectual e não estão disponíveis aqui no git**, caso queira recompilar, certifique-se de ter conseguido estes arquivos com o proprietário. 
+
+Se está em ambiente *windows*, é possível adaptar o makefile para seu sistema operacional, mas te convido a conhecer melhor o linux para este fim. De qualquer modo, boa sorte. 
 
 ## Executando:
 
@@ -34,12 +42,12 @@ Informar nome da pastas dentro do diretório **run** que contém os arquivos de 
 Na pasta raiz do projeto, execute:
 ``` ./run/UDASF -TC 60 -P 35 -RSO 6 -SOLV C3 -RV RV-A```
 
-## Interpretando resultados:
+## Resultados:
 Ao executar o binário o algoritmo criará uma corrente de RV, uma corrente de Solvente e uma corrente da mistura das duas primeiras. Posteriormente as fases da corrente de mistura são separadas e o solvente é removido de cada uma delas. Todas elas são avaliadas quanto a estabilidade, e possível separação de fases.  
 
 O algoritmo mostrará estes resultados para cada corrente no terminal, indicando: pressão e temperatura; número de moléculas; número de fases; estado físico de cada fase (0-líquido; 1-vapor); fator de compressibilidade de cada fase; fração de cada fase; composição de cada fase; vazões mássicas e molares, a massa molar e a massa específica de cada fase, e da mistura global de todas as fases.
 
-Depois de mostrar estas informações para cada corrente gerada, os resultados de rendimentos da desasfaltação é exibido, sendo estes os rendimentos de ODES e RASF em massa. A seção que indica os rendimentos é salva num arquivo dentro da própria pasta do RV. Em seguida será exibido um exemplo da resposta ao terminal.
+Depois de mostrar estas informações para cada corrente gerada, os resultados de rendimentos da desasfaltação é exibido, sendo estes os rendimentos de ODES e RASF em massa. Esta ultima seção de resultados, que indica os rendimentos, é salva num arquivo dentro da própria pasta do RV. Em seguida será exibido um exemplo da resposta ao terminal.
 
 
 <div style="overflow:scroll; width:600px; height:300px;">
@@ -596,11 +604,5 @@ FIM!
 ~~~
 </div>
 
-## Instalação:
 
-O único pré-requisito externo é a biblioteca Eigen, que já está inserida no projeto, então nada precisa ser instalado. 
-
-Se você está em ambiente *linux* então basta clonar o projeto e executar o binário conforme exemplo anterior. Caso deseje recompilar o código, seu sistema operacional já deve possuir um compilador C++, então basta executar `make` na raiz do projeto. Estou utilizando o c++20 como compilador (`g++ -std=c++2a`), e caso deseje alterar a versão do C++, alterar alguma flag, ou adicionar alguma bibliotecas, faça isso no arquivo *makefile*. No entanto, lembre-se: **Duas classe deste código possuem restrições de propriedade intelectual e não estão disponíveis aqui no git**, caso queira recompilar, certifique-se de ter conseguido estes arquivos com os proprietários. 
-
-Se está em ambiente *windows*, é possível adaptar o makefile para seu sistema operacional, mas pensaria melhor sobre utilizar algo menos proprietário para este fim. De qualquer modo, boa sorte. 
 
